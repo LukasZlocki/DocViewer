@@ -32,11 +32,12 @@ namespace DocViewer.Services.Repository
         /// Save list of documents to xml file
         /// </summary>
         /// <param name="documentsList"></param>
-        private static void SaveDatabase(List<Documents> documentsList) {
+        private static void SaveDocumentsToDatabase(List<Documents> documentsList) {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Documents>));
             TextWriter tw = new StreamWriter(DB_FILE_NAME);
             xmlSerializer.Serialize(tw, documentsList);
             tw.Close();
         }
+
     }
 }

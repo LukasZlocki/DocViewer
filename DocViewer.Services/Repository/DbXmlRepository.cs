@@ -17,7 +17,11 @@ namespace DocViewer.Services
             documentsList = DbXmlEngine.LoadDatabase();
             // Extracting data refering proper ProductId           
             documents = documentsList.Where(id => id.ProductId == ProductId).FirstOrDefault();
+
             return documents;
         }
+        
+
+
     }
 }
