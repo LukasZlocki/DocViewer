@@ -1,0 +1,9 @@
+.vs/
+.vscode/
+DocViewer/bin/
+DocViewer/obj/
+DocViewer.Models/bin/
+DocViewer.Models/obj/
+DocViewer.Services/bin/
+DocViewer.Services/obj/
+
