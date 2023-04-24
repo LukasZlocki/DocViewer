@@ -1,5 +1,6 @@
 .vs/
 .vscode/
+db/
 DocViewer/bin/
 DocViewer/obj/
 DocViewer.Models/bin/
