@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DocViewer.ViewModels;
 
 namespace DocViewer
 {
@@ -23,6 +24,13 @@ namespace DocViewer
         public MainWindow()
         {
             InitializeComponent();
+            LoadingDataTest();
+        }
+
+        // For testing purpose
+        public void LoadingDataTest() {
+            // ToDo: retrive some example data from db in order to test service
+            MainWindowViewModel MainVM = new MainWindowViewModel("150L0065");
         }
     }
 }
