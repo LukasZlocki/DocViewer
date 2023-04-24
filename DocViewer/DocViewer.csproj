@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DocViewer.Services\DocViewer.Services.csproj" />
+    <ProjectReference Include="..\DocViewer.Models\DocViewer.Models.csproj" />
   </ItemGroup>
 
 </Project>
