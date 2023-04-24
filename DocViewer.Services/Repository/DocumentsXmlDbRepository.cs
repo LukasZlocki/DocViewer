@@ -4,7 +4,7 @@ using DocViewer.Services.Repository;
 
 namespace DocViewer.Services 
 {
-    public class DbXmlRepository : IDbXmlRepository
+    public class DocumentsXmlDbRepository : IDocumentsXmlDbRepository
     {
 
         
@@ -13,9 +13,12 @@ namespace DocViewer.Services
             List<Documents> documentsList = new List<Documents>();
             Documents? documents = new Documents();
             // Loading database
-            documentsList = DbXmlEngine.LoadDatabase();
+            documentsList = DocumentsDbXmlEngine.LoadDatabase();
             // Extracting data refering proper ProductId           
             documents = documentsList.Where(id => id.ProductId == ProductId).FirstOrDefault();
+            if (documents == null) {
+                documents = new Documents();
+            }
             return documents;
         }
         

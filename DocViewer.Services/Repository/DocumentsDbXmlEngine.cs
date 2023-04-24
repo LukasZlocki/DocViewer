@@ -3,7 +3,7 @@ using DocViewer.Models.Models;
 
 namespace DocViewer.Services.Repository
 {
-    internal static class DbXmlEngine
+    internal static class DocumentsDbXmlEngine
     {
         internal static string DB_FILE_NAME = "dbfile.xml";
 
