@@ -3,6 +3,6 @@ using DocViewer.Models.Models;
 namespace DocViewer.Services.Service 
 {
     public interface IDocumentService {
-        public Documents GetAllDocumentsByProductId(string productId);
+        public Documents GetDocumentsSetForProductId(string productId);
     }
 }
