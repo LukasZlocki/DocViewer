@@ -15,12 +15,8 @@ namespace DocViewer.ViewModels
 
         public MainWindowViewModel(string productId)
         {   
-            // creating fake db
-            var db = FakeDocuments.CreateFakeDataToXmlDatabase();
-            _documentService.SaveDocumentsListToDatabase(db);
-            //productId = "150L0065";
-            //Documents = _documentService.GetDocumentsSetForProductId(productId);
-            
+            productId = "150L0100";
+            Documents = _documentService.GetDocumentsSetForProductId(productId); 
         }
 
     }

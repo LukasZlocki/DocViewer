@@ -1,11 +1,28 @@
 using System.Collections.Generic;
 using DocViewer.Models.Models;
+using DocViewer.Services.Service;
 
 namespace DocViewer.FakeDbs
-{
-    public static class FakeDocuments
+{   
+    public class FakeDocuments
     {
-        
+        private DocumentService _documentService = new DocumentService();
+
+        private Documents documents = new Documents();
+
+        public void TestSavingDb() {
+            // creating fake db
+            var db = FakeDocuments.CreateFakeDataToXmlDatabase();
+            _documentService.SaveDocumentsListToDatabase(db);
+        }
+
+        public void TestReadingDb() {
+            // reading from db
+            string productId = "150L0100";
+            documents = _documentService.GetDocumentsSetForProductId(productId); 
+        }
+
+
         public static List<Documents> CreateFakeDataToXmlDatabase() {
             Documents doc1 = new Documents() {
                 ProductId = "150L0099",
