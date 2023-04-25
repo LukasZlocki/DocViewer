@@ -6,5 +6,6 @@ namespace DocViewer.Services.Repository
     {
         // READ
          public Documents ReadDocumentsSetFromDatabaseByProductId(string ProductId);
+         public void SaveDocumentsListToDatabase(List<Documents> docsList);
     }
 }

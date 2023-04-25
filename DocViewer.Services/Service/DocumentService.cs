@@ -11,5 +11,9 @@ namespace DocViewer.Services.Service
             documents = _dbReader.ReadDocumentsSetFromDatabaseByProductId(productId);
             return documents;
         }
+    
+        public void SaveDocumentsListToDatabase(List<Documents> docsList) {
+            _dbReader.SaveDocumentsListToDatabase(docsList);
+        }
     }
 }
