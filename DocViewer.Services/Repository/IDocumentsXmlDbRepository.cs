@@ -5,6 +5,6 @@ namespace DocViewer.Services.Repository
     public interface IDocumentsXmlDbRepository
     {
         // READ
-         public Documents ReadDocumentsFromDatabaseByProductId(string ProductId);
+         public Documents ReadDocumentsSetFromDatabaseByProductId(string ProductId);
     }
 }
