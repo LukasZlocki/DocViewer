@@ -6,7 +6,7 @@ namespace DocViewer.Services
 {
     public class DocumentsXmlDbRepository : IDocumentsXmlDbRepository
     {
-        internal static string DB_FILE_NAME = "dbfile.xml";
+        internal static string DB_FILE_NAME = "dbfile_fake.xml";
         
         // READ
         public Documents ReadDocumentsSetFromDatabaseByProductId(string ProductId) {
@@ -23,6 +23,20 @@ namespace DocViewer.Services
             return documents;
         }
         
+        // UPDATE
+        /// <summary>
+        /// Save all products id and its list of documents to xml file
+        /// </summary>
+        /// <param name="docsList"></param>
+        public void SaveDocumentsListToDatabase(List<Documents> docsList)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Documents>));
+            TextWriter tw = new StreamWriter(DB_FILE_NAME);
+            xmlSerializer.Serialize(tw, docsList);
+            tw.Close();
+        }
+
+
         #region Static methods
         /// <summary>
         /// Retriving list of all part numbers and its documents from xml database
@@ -43,17 +57,6 @@ namespace DocViewer.Services
                 docsList = new List<Documents>();
             }
             return docsList;
-        }
-
-        /// <summary>
-        /// Save all products id and its list of documents to xml file
-        /// </summary>
-        /// <param name="documentsList"></param>
-        private static void SaveDocumentsToDatabase(List<Documents> documentsList) {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Documents>));
-            TextWriter tw = new StreamWriter(DB_FILE_NAME);
-            xmlSerializer.Serialize(tw, documentsList);
-            tw.Close();
         }
         #endregion // Static methods
     }
