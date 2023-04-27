@@ -19,5 +19,7 @@ namespace DocViewer.ViewModels
             Documents = _documentService.GetDocumentsSetForProductId(productId); 
         }
 
+
+
     }
 }
