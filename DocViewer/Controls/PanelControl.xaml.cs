@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocViewer.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace DocViewer.Controls
         public PanelControl()
         {
             InitializeComponent();
+
+            DataContext = new PanelControlPageViewModel();
         }
 
         private void btnLeft_Click(object sender, RoutedEventArgs e)
