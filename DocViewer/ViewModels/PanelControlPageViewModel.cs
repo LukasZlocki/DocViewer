@@ -61,6 +61,7 @@ namespace DocViewer.ViewModels
         private void MoveDocumentsRight()
         {
             Page = Page + 1;
+            if (Page >= LimitPages) { Page = LimitPages;  }
             RefreshCounter(Page, LimitPages);
 
         }
