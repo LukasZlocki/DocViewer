@@ -69,7 +69,7 @@ namespace DocViewer.ViewModels
 
         protected void OnPropertyChanged(string fieldName)
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(fieldName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(fieldName));
         }
 
 
@@ -80,8 +80,8 @@ namespace DocViewer.ViewModels
             string productId = "150L0100";
             Documents = _documentService.GetDocumentsSetForProductId(productId);
             Page = 0;
-
             LimitPages = Documents.DocumentsList.Count + 1;
+            RefreshCounter(Page, LimitPages);
         }
 
         private void RefreshCounter(int page, int limitPages)
