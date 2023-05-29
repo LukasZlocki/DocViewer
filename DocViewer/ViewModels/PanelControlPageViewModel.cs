@@ -1,13 +1,7 @@
 ﻿using DocViewer.Helpers;
 using DocViewer.Models.Models;
 using DocViewer.Services.Service;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace DocViewer.ViewModels
@@ -71,7 +65,6 @@ namespace DocViewer.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(fieldName));
         }
-
 
         // For testing purpose
         public void LoadingDataTest()
