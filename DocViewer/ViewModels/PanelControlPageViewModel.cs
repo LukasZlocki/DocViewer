@@ -72,7 +72,6 @@ namespace DocViewer.ViewModels
         }
 
 
-
         // For testing purpose
         public void LoadingDataTest()
         {
@@ -81,7 +80,7 @@ namespace DocViewer.ViewModels
             Documents = _documentService.GetDocumentsSetForProductId(productId);
             Page = 0;
 
-            LimitPages = Documents.DocumentsList.Count;
+            LimitPages = Documents.DocumentsList.Count + 1;
         }
 
         private void RefreshCounter(int page, int limitPages)
@@ -89,7 +88,6 @@ namespace DocViewer.ViewModels
             MainCounter = "" + page + " / " + limitPages;
             OnPropertyChanged(nameof(MainCounter));
         }
-
 
 
     }
