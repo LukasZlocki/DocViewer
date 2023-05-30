@@ -66,10 +66,9 @@ namespace DocViewer.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(fieldName));
         }
 
-        // For testing purpose
+        // For testing purpose, retriving some test data
         public void LoadingDataTest()
         {
-            // ToDo: retrive some example data from db in order to test service
             string productId = "150L0100";
             Documents = _documentService.GetDocumentsSetForProductId(productId);
             Page = 0;
@@ -77,12 +76,11 @@ namespace DocViewer.ViewModels
             RefreshCounter(Page, LimitPages);
         }
 
+        // Refreshing main documents counter 
         private void RefreshCounter(int page, int limitPages)
         {
             MainCounter = "" + page + " / " + limitPages;
             OnPropertyChanged(nameof(MainCounter));
         }
-
-
     }
 }

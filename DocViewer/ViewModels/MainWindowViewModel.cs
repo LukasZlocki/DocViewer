@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using DocViewer.FakeDbs;
 using DocViewer.Models.Models;
 using DocViewer.Services.Service;
 
@@ -18,8 +16,5 @@ namespace DocViewer.ViewModels
             productId = "150L0100";
             Documents = _documentService.GetDocumentsSetForProductId(productId); 
         }
-
-
-
     }
 }
