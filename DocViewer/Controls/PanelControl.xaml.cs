@@ -14,6 +14,10 @@ namespace DocViewer.Controls
             DataContext = new PanelControlPageViewModel();
         }
 
+        // ToDo : bind it and remove this method 
+        private void OnKeyDownHandler(object sender, System.Windows.Input.KeyEventArgs e)
+        {
 
+        }
     }
 }
