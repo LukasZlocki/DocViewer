@@ -8,16 +8,17 @@ namespace DocViewer.ViewModels
 {
     class PanelControlPageViewModel : INotifyPropertyChanged
     {
-
         private DocumentService _documentService = new DocumentService();
-
         public event PropertyChangedEventHandler? PropertyChanged;
-
         public Documents Documents { get; set; } = new Documents();
-
 
         private int Page { get; set; } = 0;
         private int LimitPages { get; set; } = 0;
+
+        public ICommand MoveDocumentsLeftCommand { get; set; }
+        public ICommand MoveDocumentsRightCommand { get; set; }
+        public ICommand StartTxtCommand { get; set; }
+
         private string _mainCounter;
         public string MainCounter
         {
@@ -32,16 +33,42 @@ namespace DocViewer.ViewModels
             }
         }
 
-        public ICommand MoveDocumentsLeftCommand { get; set; }
-        public ICommand MoveDocumentsRightCommand { get; set; }
-
+        private string _txtBox;
+        public string txtBox
+        {
+            get { return _txtBox; }
+            set
+            {
+                if (value != _txtBox)
+                {
+                    _txtBox = value;
+                    OnPropertyChanged("txtBox");
+                }
+            }
+        }
 
         // constructor
         public PanelControlPageViewModel()
         {
             MoveDocumentsLeftCommand = new RelayCommand(MoveDocumentsLeft);
             MoveDocumentsRightCommand = new RelayCommand(MoveDocumentsRight);
-            LoadingDataTest();
+            StartTxtCommand = new RelayCommand(txtLoading);
+            RefreshCounter(Page, LimitPages);
+        }
+
+        public void SearchDoc(string productId)
+        {
+            LoadingDocuments(productId);
+        }
+
+        public void txtLoading()
+        {
+            LoadingDocuments(txtBox);
+        }
+
+        public void SearchDocumentsByProductId(string productId)
+        {
+            // to do code here
         }
 
         #region buttons methods
@@ -66,10 +93,8 @@ namespace DocViewer.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(fieldName));
         }
 
-        // For testing purpose, retriving some test data
-        public void LoadingDataTest()
+        public void LoadingDocuments(string productId)
         {
-            string productId = "150L0100";
             Documents = _documentService.GetDocumentsSetForProductId(productId);
             Page = 0;
             LimitPages = Documents.DocumentsList.Count + 1;
@@ -81,6 +106,7 @@ namespace DocViewer.ViewModels
         {
             MainCounter = "" + page + " / " + limitPages;
             OnPropertyChanged(nameof(MainCounter));
+            OnPropertyChanged(nameof(txtBox));
         }
     }
 }
