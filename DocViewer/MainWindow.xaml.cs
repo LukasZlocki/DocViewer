@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using DocViewer.ViewModels;
+using System.Windows;
 
 namespace DocViewer
 {
@@ -10,6 +11,7 @@ namespace DocViewer
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new PanelControlPageViewModel();
         }
     }
 }
