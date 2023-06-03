@@ -1,20 +1,22 @@
 using DocViewer.Models.Models;
 using DocViewer.Services.Service;
+using System.ComponentModel;
 
 namespace DocViewer.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private DocumentService _documentService = new DocumentService();
+        // ToDo : Testing if main view model can be used to
 
-        public Documents Documents { get; set; }
-        public int PresentPage { get; set; }
-        public int MaxPage { get; set; }
+        private PanelControlPageViewModel _controlVm;
 
-        public MainWindowViewModel(string productId)
-        {   
-            productId = "150L0100";
-            Documents = _documentService.GetDocumentsSetForProductId(productId); 
+        // constructor
+        public MainWindowViewModel()
+        {
+
+            
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

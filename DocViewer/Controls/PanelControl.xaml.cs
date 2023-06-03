@@ -13,7 +13,7 @@ namespace DocViewer.Controls
         public PanelControl()
         {
             InitializeComponent();
-            DataContext = new PanelControlPageViewModel();
+           // DataContext = new PanelControlPageViewModel();
         }
 
         // ToDo : bind it and remove this method 

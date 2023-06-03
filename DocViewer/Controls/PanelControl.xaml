@@ -3,14 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DocViewer.Controls"
+             xmlns:local1="clr-namespace:DocViewer.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="500">
+             d:DesignHeight="100" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <local1:PanelControlPageViewModel x:Key="ABC" />
+    </UserControl.Resources>
+    
     <Grid>
         <!-- 
             buttons and interaction with user
         <!-->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#225E66" Offset="0.717"/>
