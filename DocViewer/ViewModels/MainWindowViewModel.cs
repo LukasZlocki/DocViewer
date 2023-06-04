@@ -1,8 +1,11 @@
 using DocViewer.Helpers;
 using DocViewer.Models.Models;
 using DocViewer.Services.Service;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace DocViewer.ViewModels
 {
@@ -47,6 +50,23 @@ namespace DocViewer.ViewModels
                 }
             }
         }
+
+
+
+        private string _imgSource;
+        public string ImgSource
+        {
+            get { return _imgSource; }
+            set
+            {
+                if (value != _imgSource)
+                {
+                    _imgSource = value;
+                    OnPropertyChanged("imgSource");
+                }
+            }
+        }
+
 
         // constructor
         public MainWindowViewModel()
@@ -96,14 +116,45 @@ namespace DocViewer.ViewModels
             Page = 0;
             LimitPages = Documents.DocumentsList.Count + 1;
             RefreshCounter(Page, LimitPages);
+            //ShowThisDocumentOnScreen(Documents.DocumentsList[Page].DocumentName);
+            ShowThisDocumentOnScreen("Sm");
         }
 
         // Refreshing main documents counter 
-        private void RefreshCounter(int page, int limitPages)
+        private void RefreshCounter(int _page, int _limitPages)
         {
-            MainCounter = "" + page + " / " + limitPages;
+            _page = _page + 1;
+            MainCounter = "" + _page + " / " + _limitPages;
             OnPropertyChanged(nameof(MainCounter));
             OnPropertyChanged(nameof(txtBox));
         }
+
+        private void ShowThisDocumentOnScreen(string documentName)
+        {
+            // ToDo : Path settings need to be covered by user setup class
+            string documentPath = "C:\\0 VirtualServer\\Documents\\";
+            string documentExtension = ".jpg";
+            string fullPath = documentPath + documentName + documentExtension;
+
+            ImgSource = fullPath;
+            OnPropertyChanged(nameof(ImgSource));
+
+            /*
+            try
+            {
+                //ImageSource imagesource = new BitmapImage(new Uri(fullPath));
+                //ImageShow.Source = imagesource;
+            }
+            catch
+            {
+                if (documentName == "")
+                {
+                   // ShowFailDocument("FALSE_NO_FILE_WITH_DOCUMENT", userSettings);
+                }
+
+            }
+            */
+        }
+
     }
 }
