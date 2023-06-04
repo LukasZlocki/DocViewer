@@ -33,21 +33,7 @@ namespace DocViewer.ViewModels
                 }
             }
         }
-
-        private string _mainCounter2;
-        public string MainCounter2
-        {
-            get { return _mainCounter2; }
-            set
-            {
-                if (value != _mainCounter2)
-                {
-                    _mainCounter2 = value;
-                    OnPropertyChanged("MainCounter2");
-                }
-            }
-        }
-
+        
         private string _txtBox;
         public string txtBox
         {
@@ -81,10 +67,6 @@ namespace DocViewer.ViewModels
             LoadingDocuments(txtBox);
         }
 
-        public void SearchDocumentsByProductId(string productId)
-        {
-            // to do code here
-        }
 
         #region buttons methods
         private void MoveDocumentsLeft()
@@ -120,9 +102,7 @@ namespace DocViewer.ViewModels
         private void RefreshCounter(int page, int limitPages)
         {
             MainCounter = "" + page + " / " + limitPages;
-            MainCounter2 = MainCounter;
             OnPropertyChanged(nameof(MainCounter));
-            OnPropertyChanged(nameof(MainCounter2));
             OnPropertyChanged(nameof(txtBox));
         }
     }
