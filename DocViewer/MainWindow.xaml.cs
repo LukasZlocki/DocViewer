@@ -11,7 +11,7 @@ namespace DocViewer
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new PanelControlPageViewModel();
+            DataContext = new MainWindowViewModel();
         }
     }
 }
