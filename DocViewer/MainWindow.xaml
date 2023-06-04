@@ -3,13 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:panel="clr-namespace:DocViewer.Controls" 
-        xmlns:local1="clr-namespace:DocViewer.ViewModels"
+        xmlns:local="clr-namespace:DocViewer.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <Window.Resources>
-        <local1:PanelControlPageViewModel x:Key="ABC" />
+        <local:MainWindowViewModel x:Key="ABC" />
     </Window.Resources>
 
     <Grid>
@@ -21,11 +20,41 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="0*"/>
             </Grid.ColumnDefinitions>
+   
+        <!-- 
+            Area for jpg document.
+        <!-->
+        <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="Aqua">
+            <Image x:Name="ImageShow" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+        </StackPanel>
         
         <!-- 
-            ToDo: Add control with jpg document. Put it as control component.  
+            buttons and interaction with user.
         <!-->
-        <panel:ImgControl Grid.Row="0" DataContext="{Binding Source={StaticResource ABC}}"/>
-        <panel:PanelControl Grid.Row="1" DataContext="{Binding Source={StaticResource ABC}}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#225E66" Offset="0.717"/>
+                    <GradientStop Color="White"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10" Orientation="Horizontal">
+                <Button x:Name="btnLeft" Command="{Binding MoveDocumentsLeftCommand}" Margin="10" Height="60" Width="60" >Left</Button>
+                <Button x:Name="btnRight" Command="{Binding MoveDocumentsRightCommand}" Margin="10" Height="60" Width="60"  >Right</Button>
+                <Label x:Name="lblCounter" Content="{Binding  Path=MainCounter}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"></Label>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10">
+                <!--  <TextBox x:Name="txtBoxID"  Text="{Binding txtBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Left" FontSize="40" Height="53" TextWrapping="Wrap" Width="200" KeyDown="OnKeyDownHandler" />
+              <!-->
+                <TextBox x:Name="txtBoxID" Text="{Binding txtBox, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" FontSize="40" Height="53" TextWrapping="Wrap" Width="200" >
+                    <TextBox.InputBindings>
+                        <KeyBinding        
+                            Command="{Binding StartTxtCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            CommandParameter="{Binding Text, ElementName=txtBoxID}"
+                            Key="Enter" />
+                    </TextBox.InputBindings>
+                </TextBox>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
