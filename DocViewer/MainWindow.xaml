@@ -25,7 +25,7 @@
             Area for jpg document.
         <!-->
         <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="Aqua">
-            <Image x:Name="ImageShow" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+            <Image x:Name="ImageShow" Source="{Binding ImgSource}" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
         </StackPanel>
         
         <!-- 
