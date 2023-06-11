@@ -39,14 +39,14 @@
                 </LinearGradientBrush>
             </StackPanel.Background>
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="100" Margin="10" Orientation="Horizontal">
-                <Button x:Name="btnLeft" Command="{Binding MoveDocumentsLeftCommand}" Margin="10" Height="60" Width="60" >Left</Button>
-                <Button x:Name="btnRight" Command="{Binding MoveDocumentsRightCommand}" Margin="10" Height="60" Width="60"  >Right</Button>
+                <Button x:Name="btnLeft" Command="{Binding MoveDocumentsLeftCommand}" Margin="10" Height="50" Width="50" >Left</Button>
+                <Button x:Name="btnRight" Command="{Binding MoveDocumentsRightCommand}" Margin="10" Height="50" Width="50"  >Right</Button>
                 <Label x:Name="lblCounter" Content="{Binding  Path=MainCounter}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"></Label>
             </StackPanel>
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10">
                 <!--  <TextBox x:Name="txtBoxID"  Text="{Binding txtBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Left" FontSize="40" Height="53" TextWrapping="Wrap" Width="200" KeyDown="OnKeyDownHandler" />
               <!-->
-                <TextBox x:Name="txtBoxID" Text="{Binding txtBox, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" FontSize="40" Height="53" TextWrapping="Wrap" Width="200" >
+                <TextBox x:Name="txtBoxID" Text="{Binding txtBox, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" FontSize="40" Height="50" TextWrapping="Wrap" Width="200" >
                     <TextBox.InputBindings>
                         <KeyBinding        
                             Command="{Binding StartTxtCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -54,6 +54,11 @@
                             Key="Enter" />
                     </TextBox.InputBindings>
                 </TextBox>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10">
+                <Button x:Name="btnLanguage" Command="{Binding LanguageChangeCommand}" Height="50" Width="80">
+                    
+                </Button>
             </StackPanel>
         </StackPanel>
     </Grid>
