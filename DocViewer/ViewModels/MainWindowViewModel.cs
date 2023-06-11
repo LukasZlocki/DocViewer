@@ -53,8 +53,6 @@ namespace DocViewer.ViewModels
             }
         }
 
-
-
         private string _imgSource;
         public string ImgSource
         {
@@ -69,7 +67,6 @@ namespace DocViewer.ViewModels
             }
         }
 
-
         // constructor
         public MainWindowViewModel()
         {
@@ -83,7 +80,6 @@ namespace DocViewer.ViewModels
         {
             LoadingDocuments(txtBox);
         }
-
 
         #region buttons methods
         private void MoveDocumentsLeft()
@@ -128,8 +124,8 @@ namespace DocViewer.ViewModels
         // Refreshing main documents counter 
         private void RefreshCounter(int _page, int _limitPages)
         {
-            _page = _page;
-            _limitPages = _limitPages;
+            this.Page = _page;
+            this.LimitPages = _limitPages;
             MainCounter = "" + _page + " / " + _limitPages;
             OnPropertyChanged(nameof(MainCounter));
             OnPropertyChanged(nameof(txtBox));
@@ -165,6 +161,5 @@ namespace DocViewer.ViewModels
             }
             */
         }
-
     }
 }
