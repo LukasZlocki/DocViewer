@@ -3,6 +3,8 @@ using DocViewer.Models.Models;
 using DocViewer.Services.Service;
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -74,7 +76,7 @@ namespace DocViewer.ViewModels
             MoveDocumentsLeftCommand = new RelayCommand(MoveDocumentsLeft);
             MoveDocumentsRightCommand = new RelayCommand(MoveDocumentsRight);
             StartTxtCommand = new RelayCommand(txtLoading);
-            RefreshCounter(Page, LimitPages);
+            RefreshCounter(this.Page, this.LimitPages);
         }
 
         public void txtLoading()
@@ -109,19 +111,25 @@ namespace DocViewer.ViewModels
         public void LoadingDocuments(string productId)
         {
             Documents = _documentService.GetDocumentsSetForProductId(productId);
-            Page = 0;
-            LimitPages = Documents.DocumentsList.Count + 1;
-            RefreshCounter(Page, LimitPages);
+            SetupPageLimits(Documents, this.Page, this.LimitPages);
+            RefreshCounter(this.Page, this.LimitPages);
             // ToDo: BUG ! No strings with file name in documentsList ! 
             //ShowThisDocumentOnScreen(Documents.DocumentsList[Page].DocumentName);
             RefreshDocumentOnScreen(this.Page, this.Documents);
         }
 
+        // Setting up page counters and page liniters basis on quantity of loaded documents
+        private void SetupPageLimits(Documents documents, int page, int limitPages)
+        {
+            this.Page = 0;
+            this.LimitPages = documents.DocumentsList.Count - 1;
+        }
+
         // Refreshing main documents counter 
         private void RefreshCounter(int _page, int _limitPages)
         {
-            _page = _page + 1;
-            _limitPages = _limitPages + 1;
+            _page = _page;
+            _limitPages = _limitPages;
             MainCounter = "" + _page + " / " + _limitPages;
             OnPropertyChanged(nameof(MainCounter));
             OnPropertyChanged(nameof(txtBox));
