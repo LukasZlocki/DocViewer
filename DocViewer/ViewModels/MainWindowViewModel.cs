@@ -77,11 +77,6 @@ namespace DocViewer.ViewModels
             RefreshCounter(Page, LimitPages);
         }
 
-        public void SearchDoc(string productId)
-        {
-            LoadingDocuments(productId);
-        }
-
         public void txtLoading()
         {
             LoadingDocuments(txtBox);
