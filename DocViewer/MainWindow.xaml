@@ -13,8 +13,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-                <RowDefinition Height="0.80*"/>
-                <RowDefinition Height="0.20*"/>
+                <RowDefinition Height="0.90*"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -24,7 +24,7 @@
         <!-- 
             Area for jpg document.
         <!-->
-        <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="Aqua">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="white">
             <Image x:Name="ImageShow" Source="{Binding ImgSource}" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
         </StackPanel>
         
@@ -34,11 +34,11 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#225E66" Offset="0.717"/>
+                    <GradientStop Color="#FFEE1212" Offset="0.717"/>
                     <GradientStop Color="White"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="100" Margin="10" Orientation="Horizontal">
                 <Button x:Name="btnLeft" Command="{Binding MoveDocumentsLeftCommand}" Margin="10" Height="60" Width="60" >Left</Button>
                 <Button x:Name="btnRight" Command="{Binding MoveDocumentsRightCommand}" Margin="10" Height="60" Width="60"  >Right</Button>
                 <Label x:Name="lblCounter" Content="{Binding  Path=MainCounter}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"></Label>
