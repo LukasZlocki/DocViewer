@@ -94,6 +94,7 @@ namespace DocViewer.ViewModels
             Page = Page - 1;
             if (Page <= 0) { Page = 0; }
             RefreshCounter(Page, LimitPages);
+            RefreshDocumentOnScreen(this.Page, this.Documents);
         }
 
         private void MoveDocumentsRight()
@@ -101,6 +102,7 @@ namespace DocViewer.ViewModels
             Page = Page + 1;
             if (Page >= LimitPages) { Page = LimitPages; }
             RefreshCounter(Page, LimitPages);
+            RefreshDocumentOnScreen(this.Page, this.Documents);
         }
         #endregion
 
@@ -117,23 +119,25 @@ namespace DocViewer.ViewModels
             RefreshCounter(Page, LimitPages);
             // ToDo: BUG ! No strings with file name in documentsList ! 
             //ShowThisDocumentOnScreen(Documents.DocumentsList[Page].DocumentName);
-            RefreshDocumentOnScreen("Sm");
+            RefreshDocumentOnScreen(this.Page, this.Documents);
         }
 
         // Refreshing main documents counter 
         private void RefreshCounter(int _page, int _limitPages)
         {
             _page = _page + 1;
+            _limitPages = _limitPages + 1;
             MainCounter = "" + _page + " / " + _limitPages;
             OnPropertyChanged(nameof(MainCounter));
             OnPropertyChanged(nameof(txtBox));
         }
 
-        private void RefreshDocumentOnScreen(string documentName)
+        private void RefreshDocumentOnScreen(int page, Documents documents)
         {
             // ToDo : Path settings need to be covered by user setup class
             string documentPath = "C:\\0 VirtualServer\\Documents\\";
             string documentExtension = ".jpg";
+            string documentName = documents.DocumentsList[page].DocumentName;
             string fullPath = documentPath + documentName + documentExtension;
             ShowThisDocumentOnScreen(fullPath);
         }
