@@ -101,7 +101,6 @@ namespace DocViewer.ViewModels
             Page = Page + 1;
             if (Page >= LimitPages) { Page = LimitPages; }
             RefreshCounter(Page, LimitPages);
-
         }
         #endregion
 
@@ -116,8 +115,9 @@ namespace DocViewer.ViewModels
             Page = 0;
             LimitPages = Documents.DocumentsList.Count + 1;
             RefreshCounter(Page, LimitPages);
+            // ToDo: BUG ! No strings with file name in documentsList ! 
             //ShowThisDocumentOnScreen(Documents.DocumentsList[Page].DocumentName);
-            ShowThisDocumentOnScreen("Sm");
+            RefreshDocumentOnScreen("Sm");
         }
 
         // Refreshing main documents counter 
@@ -129,13 +129,16 @@ namespace DocViewer.ViewModels
             OnPropertyChanged(nameof(txtBox));
         }
 
-        private void ShowThisDocumentOnScreen(string documentName)
+        private void RefreshDocumentOnScreen(string documentName)
         {
             // ToDo : Path settings need to be covered by user setup class
             string documentPath = "C:\\0 VirtualServer\\Documents\\";
             string documentExtension = ".jpg";
             string fullPath = documentPath + documentName + documentExtension;
-
+            ShowThisDocumentOnScreen(fullPath);
+        }
+        private void ShowThisDocumentOnScreen(string fullPath)
+        {    
             ImgSource = fullPath;
             OnPropertyChanged(nameof(ImgSource));
 
