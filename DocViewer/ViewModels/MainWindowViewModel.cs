@@ -3,6 +3,8 @@ using DocViewer.Models.Models;
 using DocViewer.Services.Service;
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -51,8 +53,6 @@ namespace DocViewer.ViewModels
             }
         }
 
-
-
         private string _imgSource;
         public string ImgSource
         {
@@ -67,19 +67,13 @@ namespace DocViewer.ViewModels
             }
         }
 
-
         // constructor
         public MainWindowViewModel()
         {
             MoveDocumentsLeftCommand = new RelayCommand(MoveDocumentsLeft);
             MoveDocumentsRightCommand = new RelayCommand(MoveDocumentsRight);
             StartTxtCommand = new RelayCommand(txtLoading);
-            RefreshCounter(Page, LimitPages);
-        }
-
-        public void SearchDoc(string productId)
-        {
-            LoadingDocuments(productId);
+            RefreshCounter(this.Page, this.LimitPages);
         }
 
         public void txtLoading()
@@ -87,13 +81,13 @@ namespace DocViewer.ViewModels
             LoadingDocuments(txtBox);
         }
 
-
         #region buttons methods
         private void MoveDocumentsLeft()
         {
             Page = Page - 1;
             if (Page <= 0) { Page = 0; }
             RefreshCounter(Page, LimitPages);
+            RefreshDocumentOnScreen(this.Page, this.Documents);
         }
 
         private void MoveDocumentsRight()
@@ -101,7 +95,7 @@ namespace DocViewer.ViewModels
             Page = Page + 1;
             if (Page >= LimitPages) { Page = LimitPages; }
             RefreshCounter(Page, LimitPages);
-
+            RefreshDocumentOnScreen(this.Page, this.Documents);
         }
         #endregion
 
@@ -113,29 +107,41 @@ namespace DocViewer.ViewModels
         public void LoadingDocuments(string productId)
         {
             Documents = _documentService.GetDocumentsSetForProductId(productId);
-            Page = 0;
-            LimitPages = Documents.DocumentsList.Count + 1;
-            RefreshCounter(Page, LimitPages);
+            SetupPageLimits(Documents, this.Page, this.LimitPages);
+            RefreshCounter(this.Page, this.LimitPages);
+            // ToDo: BUG ! No strings with file name in documentsList ! 
             //ShowThisDocumentOnScreen(Documents.DocumentsList[Page].DocumentName);
-            ShowThisDocumentOnScreen("Sm");
+            RefreshDocumentOnScreen(this.Page, this.Documents);
+        }
+
+        // Setting up page counters and page liniters basis on quantity of loaded documents
+        private void SetupPageLimits(Documents documents, int page, int limitPages)
+        {
+            this.Page = 0;
+            this.LimitPages = documents.DocumentsList.Count - 1;
         }
 
         // Refreshing main documents counter 
         private void RefreshCounter(int _page, int _limitPages)
         {
-            _page = _page + 1;
+            this.Page = _page;
+            this.LimitPages = _limitPages;
             MainCounter = "" + _page + " / " + _limitPages;
             OnPropertyChanged(nameof(MainCounter));
             OnPropertyChanged(nameof(txtBox));
         }
 
-        private void ShowThisDocumentOnScreen(string documentName)
+        private void RefreshDocumentOnScreen(int page, Documents documents)
         {
             // ToDo : Path settings need to be covered by user setup class
             string documentPath = "C:\\0 VirtualServer\\Documents\\";
             string documentExtension = ".jpg";
+            string documentName = documents.DocumentsList[page].DocumentName;
             string fullPath = documentPath + documentName + documentExtension;
-
+            ShowThisDocumentOnScreen(fullPath);
+        }
+        private void ShowThisDocumentOnScreen(string fullPath)
+        {    
             ImgSource = fullPath;
             OnPropertyChanged(nameof(ImgSource));
 
@@ -155,6 +161,5 @@ namespace DocViewer.ViewModels
             }
             */
         }
-
     }
 }
