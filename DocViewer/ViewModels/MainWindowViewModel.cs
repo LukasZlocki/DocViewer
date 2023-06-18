@@ -13,7 +13,6 @@ namespace DocViewer.ViewModels
     {
         private DocumentService _documentService = new DocumentService();
         public event PropertyChangedEventHandler? PropertyChanged;
-        //public Documents DocumentsBase { get; set; } = new Documents();
         public Documents DocumentsBase;
 
         private int Page { get; set; } = 0;
