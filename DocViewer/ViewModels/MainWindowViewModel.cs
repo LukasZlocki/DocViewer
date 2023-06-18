@@ -13,12 +13,14 @@ namespace DocViewer.ViewModels
     {
         private DocumentService _documentService = new DocumentService();
         public event PropertyChangedEventHandler? PropertyChanged;
-        public Documents Documents { get; set; } = new Documents();
+        //public Documents DocumentsBase { get; set; } = new Documents();
+        public Documents DocumentsBase;
 
         private int Page { get; set; } = 0;
         private int LimitPages { get; set; } = 0;
 
         private string _language = "PL";
+
         private string _imgSource;
         private string _txtBox;
         private Image _imgLanguage;
@@ -56,6 +58,7 @@ namespace DocViewer.ViewModels
             }
         }
 
+        // this is productId
         public string txtBox
         {
             get { return _txtBox; }
@@ -130,7 +133,7 @@ namespace DocViewer.ViewModels
             Page = Page - 1;
             if (Page <= 0) { Page = 0; }
             RefreshCounter(Page, LimitPages);
-            RefreshDocumentOnScreen(this.Page, this.Documents, this.Language);
+            RefreshDocumentOnScreen(this.Page, this.DocumentsBase, this.Language);
         }
 
         private void MoveDocumentsRight()
@@ -138,7 +141,7 @@ namespace DocViewer.ViewModels
             Page = Page + 1;
             if (Page >= LimitPages) { Page = LimitPages; }
             RefreshCounter(Page, LimitPages);
-            RefreshDocumentOnScreen(this.Page, this.Documents, this.Language);
+            RefreshDocumentOnScreen(this.Page, this.DocumentsBase, this.Language);
         }
         #endregion
 
@@ -157,6 +160,7 @@ namespace DocViewer.ViewModels
                 Language = "PL";
             }
             OnPropertyChanged(nameof(Language));
+            LoadingDocuments(txtBox);
         }
 
 
@@ -167,12 +171,13 @@ namespace DocViewer.ViewModels
 
         public void LoadingDocuments(string productId)
         {
-            Documents = _documentService.GetDocumentsSetForProductId(productId);
-            SetupPageLimits(Documents, this.Page, this.LimitPages);
+            DocumentsBase = new Documents();
+            DocumentsBase = _documentService.GetDocumentsSetForProductId(productId);
+            SetupPageLimits(DocumentsBase, this.Page, this.LimitPages);
             RefreshCounter(this.Page, this.LimitPages);
             // ToDo: BUG ! No strings with file name in documentsList ! 
             //ShowThisDocumentOnScreen(Documents.DocumentsList[Page].DocumentName);
-            RefreshDocumentOnScreen(this.Page, this.Documents, this.Language);
+            RefreshDocumentOnScreen(this.Page, this.DocumentsBase, this.Language);
         }
 
         // Setting up page counters and page liniters basis on quantity of loaded documents
