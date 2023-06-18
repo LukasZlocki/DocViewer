@@ -23,7 +23,7 @@ namespace DocViewer.ViewModels
         private int Page { get; set; } = 0;
         private int LimitPages { get; set; } = 0;
 
-        private string _language;
+        private string _language = "PL";
         private string _imgSource;
         private string _txtBox;
         private Image _imgLanguage;
