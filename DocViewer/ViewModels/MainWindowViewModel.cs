@@ -1,15 +1,10 @@
 using DocViewer.Helpers;
 using DocViewer.Models.Models;
 using DocViewer.Services.Service;
-using System;
 using System.ComponentModel;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace DocViewer.ViewModels
 {
@@ -18,12 +13,13 @@ namespace DocViewer.ViewModels
     {
         private DocumentService _documentService = new DocumentService();
         public event PropertyChangedEventHandler? PropertyChanged;
-        public Documents Documents { get; set; } = new Documents();
+        public Documents DocumentsBase;
 
         private int Page { get; set; } = 0;
         private int LimitPages { get; set; } = 0;
 
         private string _language = "PL";
+
         private string _imgSource;
         private string _txtBox;
         private Image _imgLanguage;
@@ -61,6 +57,7 @@ namespace DocViewer.ViewModels
             }
         }
 
+        // this is productId
         public string txtBox
         {
             get { return _txtBox; }
@@ -135,7 +132,7 @@ namespace DocViewer.ViewModels
             Page = Page - 1;
             if (Page <= 0) { Page = 0; }
             RefreshCounter(Page, LimitPages);
-            RefreshDocumentOnScreen(this.Page, this.Documents);
+            RefreshDocumentOnScreen(this.Page, this.DocumentsBase, this.Language);
         }
 
         private void MoveDocumentsRight()
@@ -143,7 +140,7 @@ namespace DocViewer.ViewModels
             Page = Page + 1;
             if (Page >= LimitPages) { Page = LimitPages; }
             RefreshCounter(Page, LimitPages);
-            RefreshDocumentOnScreen(this.Page, this.Documents);
+            RefreshDocumentOnScreen(this.Page, this.DocumentsBase, this.Language);
         }
         #endregion
 
@@ -162,6 +159,7 @@ namespace DocViewer.ViewModels
                 Language = "PL";
             }
             OnPropertyChanged(nameof(Language));
+            LoadingDocuments(txtBox);
         }
 
 
@@ -172,12 +170,13 @@ namespace DocViewer.ViewModels
 
         public void LoadingDocuments(string productId)
         {
-            Documents = _documentService.GetDocumentsSetForProductId(productId);
-            SetupPageLimits(Documents, this.Page, this.LimitPages);
+            DocumentsBase = new Documents();
+            DocumentsBase = _documentService.GetDocumentsSetForProductId(productId);
+            SetupPageLimits(DocumentsBase, this.Page, this.LimitPages);
             RefreshCounter(this.Page, this.LimitPages);
             // ToDo: BUG ! No strings with file name in documentsList ! 
             //ShowThisDocumentOnScreen(Documents.DocumentsList[Page].DocumentName);
-            RefreshDocumentOnScreen(this.Page, this.Documents);
+            RefreshDocumentOnScreen(this.Page, this.DocumentsBase, this.Language);
         }
 
         // Setting up page counters and page liniters basis on quantity of loaded documents
@@ -197,12 +196,18 @@ namespace DocViewer.ViewModels
             OnPropertyChanged(nameof(txtBox));
         }
 
-        private void RefreshDocumentOnScreen(int page, Documents documents)
+        private void RefreshDocumentOnScreen(int page, Documents documents, string language)
         {
             // ToDo : Include it to UsetSettings class - Path settings need to be covered by user setup class
             string documentPath = "C:\\0 VirtualServer\\Documents\\";
             string documentExtension = ".jpg";
             string documentName = documents.DocumentsList[page].DocumentName;
+            
+            // Add UA mark to document name if ukrainian language is choosen 
+            if (language == "UA")
+            {
+                documentName = documentName + "_UA";
+            }
             string fullPath = documentPath + documentName + documentExtension;
             ShowThisDocumentOnScreen(fullPath);
         }
