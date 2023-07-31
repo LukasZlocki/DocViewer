@@ -3,7 +3,9 @@ using DocViewer.Models.Models;
 using DocViewer.Services.Service;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -21,9 +23,16 @@ namespace DocViewer.ViewModels
         private int Page { get; set; } = 0;
         private int LimitPages { get; set; } = 0;
 
+        private string _language = "PL";
+        private string _imgSource;
+        private string _txtBox;
+        private Image _imgLanguage;
+
         public ICommand MoveDocumentsLeftCommand { get; set; }
         public ICommand MoveDocumentsRightCommand { get; set; }
         public ICommand StartTxtCommand { get; set; }
+        public ICommand LanguageChangeCommand { get; set; }
+
 
         private string _mainCounter;
         public string MainCounter
@@ -38,8 +47,20 @@ namespace DocViewer.ViewModels
                 }
             }
         }
-        
-        private string _txtBox;
+
+        public Image ImgLanguage
+        {
+            get { return _imgLanguage; }
+            set
+            {
+                if (value != _imgLanguage)
+                {
+                    _imgLanguage = value;
+                    OnPropertyChanged("ImgLanguage");
+                }
+            }
+        }
+
         public string txtBox
         {
             get { return _txtBox; }
@@ -53,7 +74,6 @@ namespace DocViewer.ViewModels
             }
         }
 
-        private string _imgSource;
         public string ImgSource
         {
             get { return _imgSource; }
@@ -62,7 +82,34 @@ namespace DocViewer.ViewModels
                 if (value != _imgSource)
                 {
                     _imgSource = value;
-                    OnPropertyChanged("imgSource");
+                    OnPropertyChanged("ImgSource");
+                }
+            }
+        }
+
+        private string _imgSource2;
+        public string ImgSource2
+        {
+            get { return _imgSource2; }
+            set
+            {
+                if (value != _imgSource2)
+                {
+                    _imgSource2 = value;
+                    OnPropertyChanged("ImgSource2");
+                }
+            }
+        }
+
+        public string Language
+        {
+            get { return _language; }
+            set
+            {
+                if (value != _language)
+                {
+                    _language = value;
+                    OnPropertyChanged("Language");
                 }
             }
         }
@@ -72,6 +119,7 @@ namespace DocViewer.ViewModels
         {
             MoveDocumentsLeftCommand = new RelayCommand(MoveDocumentsLeft);
             MoveDocumentsRightCommand = new RelayCommand(MoveDocumentsRight);
+            LanguageChangeCommand = new RelayCommand(LanguageChange);
             StartTxtCommand = new RelayCommand(txtLoading);
             RefreshCounter(this.Page, this.LimitPages);
         }
@@ -98,6 +146,24 @@ namespace DocViewer.ViewModels
             RefreshDocumentOnScreen(this.Page, this.Documents);
         }
         #endregion
+
+        // ToDo: Solve problem of flags here
+        private void LanguageChange()
+        {
+            string _fullPath = "";
+            string _relativePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+
+            if (Language == "PL")
+            {
+                Language = "UA";
+            }
+            else
+            {
+                Language = "PL";
+            }
+            OnPropertyChanged(nameof(Language));
+        }
+
 
         protected void OnPropertyChanged(string fieldName)
         {
@@ -133,7 +199,7 @@ namespace DocViewer.ViewModels
 
         private void RefreshDocumentOnScreen(int page, Documents documents)
         {
-            // ToDo : Path settings need to be covered by user setup class
+            // ToDo : Include it to UsetSettings class - Path settings need to be covered by user setup class
             string documentPath = "C:\\0 VirtualServer\\Documents\\";
             string documentExtension = ".jpg";
             string documentName = documents.DocumentsList[page].DocumentName;

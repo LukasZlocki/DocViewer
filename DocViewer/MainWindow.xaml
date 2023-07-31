@@ -9,12 +9,14 @@
 
     <Window.Resources>
         <local:MainWindowViewModel x:Key="ABC" />
+        <Image x:Key="PL" Source="pack://application:,,,/Pics/Polish_Flag.png" Height="55" Width="80" />
+        <Image x:Key="UA" Source="pack://application:,,,/Pics/Ukraine_Flag.png"  Height="55" Width="80"/>
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-                <RowDefinition Height="0.80*"/>
-                <RowDefinition Height="0.20*"/>
+                <RowDefinition Height="0.90*"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -24,7 +26,7 @@
         <!-- 
             Area for jpg document.
         <!-->
-        <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="Aqua">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="white">
             <Image x:Name="ImageShow" Source="{Binding ImgSource}" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
         </StackPanel>
         
@@ -34,19 +36,17 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#225E66" Offset="0.717"/>
+                    <GradientStop Color="#FFEE1212" Offset="0.717"/>
                     <GradientStop Color="White"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
-            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10" Orientation="Horizontal">
-                <Button x:Name="btnLeft" Command="{Binding MoveDocumentsLeftCommand}" Margin="10" Height="60" Width="60" >Left</Button>
-                <Button x:Name="btnRight" Command="{Binding MoveDocumentsRightCommand}" Margin="10" Height="60" Width="60"  >Right</Button>
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="100" Margin="10" Orientation="Horizontal">
+                <Button x:Name="btnLeft" Command="{Binding MoveDocumentsLeftCommand}" Margin="10" Height="50" Width="50" >Left</Button>
+                <Button x:Name="btnRight" Command="{Binding MoveDocumentsRightCommand}" Margin="10" Height="50" Width="50"  >Right</Button>
                 <Label x:Name="lblCounter" Content="{Binding  Path=MainCounter}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"></Label>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10">
-                <!--  <TextBox x:Name="txtBoxID"  Text="{Binding txtBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Left" FontSize="40" Height="53" TextWrapping="Wrap" Width="200" KeyDown="OnKeyDownHandler" />
-              <!-->
-                <TextBox x:Name="txtBoxID" Text="{Binding txtBox, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" FontSize="40" Height="53" TextWrapping="Wrap" Width="200" >
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" Orientation="Horizontal" Margin="10">
+                <TextBox x:Name="txtBoxID" Text="{Binding txtBox, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" FontSize="40" Height="50" TextWrapping="Wrap" Width="200" >
                     <TextBox.InputBindings>
                         <KeyBinding        
                             Command="{Binding StartTxtCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -54,6 +54,7 @@
                             Key="Enter" />
                     </TextBox.InputBindings>
                 </TextBox>
+                <Button x:Name="btnLanguage" Command="{Binding LanguageChangeCommand}" Content="{Binding Language}" Margin="10" Height="30" Width="30" />
             </StackPanel>
         </StackPanel>
     </Grid>
