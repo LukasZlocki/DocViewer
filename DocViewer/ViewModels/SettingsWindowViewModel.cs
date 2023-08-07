@@ -5,8 +5,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using DocViewer;
 
 namespace DocViewer.ViewModels
 {
@@ -41,10 +43,17 @@ namespace DocViewer.ViewModels
             }
         }
 
-
         private void SaveSetttings()
         {
             // ToDo: Write logic for saving matrix and document folder settings
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is SettingsWindow)
+                {
+                    window.Close();
+                    break;
+                }
+            }
         }
 
         protected void OnPropertyChanged(string fieldName)
