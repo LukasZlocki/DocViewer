@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DocViewer"
+        xmlns:local="clr-namespace:DocViewer.ViewModels"
         mc:Ignorable="d"
         Title="SettingsWindow" Height="250" Width="400">
     <Grid>
@@ -28,11 +28,17 @@
             </StackPanel>
             <StackPanel Margin="5">
                 <Label x:Name="lbl1" Content="Skopiuj i wklej link do katalogu z glowna matryca" HorizontalAlignment="Left" VerticalAlignment="Top" Width="373"/>
-                <TextBox x:Name="txtPath" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" />
-
+                <TextBox x:Name="txtPathMatrix" Text="{Binding txtBoxMatrixPath, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" >
+                    <TextBox.InputBindings>
+                        <KeyBinding        
+                            Command="{Binding MatrycaPathTxtCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            CommandParameter="{Binding Text, ElementName=txtPath}"
+                            Key="Enter" />
+                    </TextBox.InputBindings>
+                </TextBox>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Margin="15">
-                <Button x:Name="btnChange" Content="Zapisz zmiany i zamknij okno" HorizontalAlignment="Left" Width="170" Click="btnChange_Click" Height="22" VerticalAlignment="Bottom"/>
+                <Button x:Name="btnChangeSave" Command="{Binding SaveSettingsCommand}" Content="Zapisz zmiany i zamknij okno" HorizontalAlignment="Center" Height="25" />
             </StackPanel>
         </StackPanel>
     </Grid>
