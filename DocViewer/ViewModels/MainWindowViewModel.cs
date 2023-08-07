@@ -3,6 +3,7 @@ using DocViewer.Models.Models;
 using DocViewer.Services.Service;
 using System.ComponentModel;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -28,6 +29,8 @@ namespace DocViewer.ViewModels
         public ICommand MoveDocumentsRightCommand { get; set; }
         public ICommand StartTxtCommand { get; set; }
         public ICommand LanguageChangeCommand { get; set; }
+
+        public ICommand SettingsWindowRunCommand { get; set; }
 
 
         private string _mainCounter;
@@ -118,6 +121,7 @@ namespace DocViewer.ViewModels
             MoveDocumentsRightCommand = new RelayCommand(MoveDocumentsRight);
             LanguageChangeCommand = new RelayCommand(LanguageChange);
             StartTxtCommand = new RelayCommand(txtLoading);
+            SettingsWindowRunCommand = new RelayCommand(SettingsWindowRun);
             RefreshCounter(this.Page, this.LimitPages);
         }
 
@@ -231,6 +235,12 @@ namespace DocViewer.ViewModels
 
             }
             */
+        }
+
+        private void SettingsWindowRun()
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Show();
         }
     }
 }
