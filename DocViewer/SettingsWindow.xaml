@@ -24,7 +24,7 @@
         <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <StackPanel Margin="5">
                 <Label x:Name="lbl1_Copy" Content="Skopiuj i wklej link do katalogu z dokumentami" HorizontalAlignment="Left" VerticalAlignment="Top" Width="373"/>
-                <TextBox x:Name="txtPathDocs" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" />
+                <TextBox x:Name="txtPathDocs" Text="{Binding txtBoxDocumentsPath, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" />
             </StackPanel>
             <StackPanel Margin="5">
                 <Label x:Name="lbl1" Content="Skopiuj i wklej link do katalogu z glowna matryca" HorizontalAlignment="Left" VerticalAlignment="Top" Width="373"/>

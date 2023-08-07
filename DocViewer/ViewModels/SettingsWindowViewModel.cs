@@ -17,6 +17,7 @@ namespace DocViewer.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public string _txtBoxMatrixPath;
+        public string _txtBoxDocumentsPath;
 
         public ICommand SaveSettingsCommand { get; set; }
         public ICommand MatrycaPathTxtCommand { get; set; }
@@ -29,7 +30,7 @@ namespace DocViewer.ViewModels
         }
 
 
-        // this is productId
+        // this is path to matrix
         public string txtBoxMatrixPath
         {
             get { return _txtBoxMatrixPath; }
@@ -39,6 +40,20 @@ namespace DocViewer.ViewModels
                 {
                     _txtBoxMatrixPath = value;
                     OnPropertyChanged("txtBoxMatrixPath");
+                }
+            }
+        }
+
+        // this is path to documents
+        public string txtBoxDocumentsPath
+        {
+            get { return _txtBoxDocumentsPath; }
+            set
+            {
+                if (value != _txtBoxDocumentsPath)
+                {
+                    _txtBoxDocumentsPath = value;
+                    OnPropertyChanged("txtBoxDocumentsPath");
                 }
             }
         }
