@@ -28,14 +28,7 @@
             </StackPanel>
             <StackPanel Margin="5">
                 <Label x:Name="lbl1" Content="Skopiuj i wklej link do katalogu z glowna matryca" HorizontalAlignment="Left" VerticalAlignment="Top" Width="373"/>
-                <TextBox x:Name="txtPathMatrix" Text="{Binding txtBoxMatrixPath, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" >
-                    <TextBox.InputBindings>
-                        <KeyBinding        
-                            Command="{Binding MatrycaPathTxtCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                            CommandParameter="{Binding Text, ElementName=txtPath}"
-                            Key="Enter" />
-                    </TextBox.InputBindings>
-                </TextBox>
+                <TextBox x:Name="txtPathMatrix" Text="{Binding txtBoxMatrixPath, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" />
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Margin="15">
                 <Button x:Name="btnChangeSave" Command="{Binding SaveSettingsCommand}" Content="Zapisz zmiany i zamknij okno" HorizontalAlignment="Center" Height="25" />
