@@ -2,7 +2,7 @@
 
 namespace DocViewer.Services.Repository
 {
-    public class UserSettingsXmlDbRepositoryb : IUserSettingsXmlDbRepository
+    public class UserSettingsXmlDbRepository : IUserSettingsXmlDbRepository
     {
         public UserSettings ReadUserSettingsFromDatabase()
         {
