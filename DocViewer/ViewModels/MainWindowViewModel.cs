@@ -3,7 +3,6 @@ using DocViewer.Models.Models;
 using DocViewer.Services.Service;
 using System.ComponentModel;
 using System.IO;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
