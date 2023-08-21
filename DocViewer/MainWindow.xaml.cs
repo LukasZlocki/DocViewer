@@ -1,4 +1,5 @@
-﻿using DocViewer.ViewModels;
+﻿using DocViewer.Models.Models;
+using DocViewer.ViewModels;
 using System.Windows;
 
 namespace DocViewer
@@ -8,6 +9,8 @@ namespace DocViewer
     /// </summary>
     public partial class MainWindow : Window
     {
+        WindowPosition thisWindowPosition = new WindowPosition();
+
         public MainWindow()
         {
             InitializeComponent();
