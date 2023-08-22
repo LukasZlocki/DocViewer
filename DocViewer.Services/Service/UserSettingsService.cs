@@ -10,7 +10,7 @@ namespace DocViewer.Services.Service
         // READ
         public UserSettings GetAllUserSettings()
         {
-            var settings = _dbReader.ReadUserSettingsFromDatabase();
+            var settings = _dbReader.ReadAllUserSettingsFromDatabase();
             return settings;
         }
 
@@ -27,7 +27,7 @@ namespace DocViewer.Services.Service
         }
 
         // UPDATE
-        public void SaveUserSettings(UserSettings settings)
+        public void SaveAllUserSettings(UserSettings settings)
         {
             _dbReader.SaveAllUserSettingsToDatabase(settings);
         }
