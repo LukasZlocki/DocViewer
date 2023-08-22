@@ -13,7 +13,7 @@
         <Image x:Key="UA" Source="pack://application:,,,/Pics/Ukraine_Flag.png"  Height="55" Width="80"/>
     </Window.Resources>
 
-    <Grid>
+    <Grid x:Name="MainGrid" MouseDown="Grid_MouseDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="0.85*"/>
