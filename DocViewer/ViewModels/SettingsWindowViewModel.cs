@@ -1,4 +1,5 @@
 ﻿using DocViewer.Helpers;
+using DocViewer.Models.Models;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -9,8 +10,8 @@ namespace DocViewer.ViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public string _txtBoxMatrixPath;
-        public string _txtBoxDocumentsPath;
+        // settings of user paths for documents and matrix file
+        UserPaths userPaths = new UserPaths();
 
         public ICommand SaveSettingsCommand { get; set; }
         public ICommand MatrycaPathTxtCommand { get; set; }
@@ -26,12 +27,12 @@ namespace DocViewer.ViewModels
         // this is path to matrix
         public string txtBoxMatrixPath
         {
-            get { return _txtBoxMatrixPath; }
+            get { return userPaths.MatrixPath; }
             set
             {
-                if (value != _txtBoxMatrixPath)
+                if (value != userPaths.MatrixPath)
                 {
-                    _txtBoxMatrixPath = value;
+                    userPaths.MatrixPath = value;
                     OnPropertyChanged("txtBoxMatrixPath");
                 }
             }
@@ -40,12 +41,12 @@ namespace DocViewer.ViewModels
         // this is path to documents
         public string txtBoxDocumentsPath
         {
-            get { return _txtBoxDocumentsPath; }
+            get { return userPaths.DocumentsPath; }
             set
             {
-                if (value != _txtBoxDocumentsPath)
+                if (value != userPaths.DocumentsPath)
                 {
-                    _txtBoxDocumentsPath = value;
+                    userPaths.DocumentsPath = value;
                     OnPropertyChanged("txtBoxDocumentsPath");
                 }
             }
