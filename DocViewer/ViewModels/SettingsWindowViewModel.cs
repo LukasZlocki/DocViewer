@@ -1,5 +1,6 @@
 ﻿using DocViewer.Helpers;
 using DocViewer.Models.Models;
+using DocViewer.Services.Service;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -9,6 +10,8 @@ namespace DocViewer.ViewModels
     class SettingsWindowViewModel :INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        private UserSettingsService userSettingsService;
 
         // settings of user paths for documents and matrix file
         UserPaths userPaths = new UserPaths();
@@ -54,7 +57,10 @@ namespace DocViewer.ViewModels
 
         private void SaveSetttings()
         {
-            // ToDo: Write logic for saving matrix and document folder settings
+            // Update user paths in database
+            userSettingsService.UpdateUserPaths(userPaths);
+
+            // Closing user settings window
             foreach (Window window in Application.Current.Windows)
             {
                 if (window is SettingsWindow)
