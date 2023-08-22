@@ -6,12 +6,12 @@ namespace DocViewer.Services.Service
     {
         // GET
         public UserSettings GetAllUserSettings();
-        public UserSettings GetUserPaths();
-        public UserSettings GetWindowPosition();
+        public UserPaths GetUserPaths();
+        public WindowPosition GetWindowPosition();
 
         // UPDATE
-        public void UpdateUserPaths(UserSettings pathSettings);
-        public void UpdateWindowPosition(UserSettings positionSettings);
+        public void UpdateUserPaths(UserPaths pathSettings);
+        public void UpdateWindowPosition(WindowPosition positionSettings);
         public void SaveAllUserSettings(UserSettings settings);
     }
 }

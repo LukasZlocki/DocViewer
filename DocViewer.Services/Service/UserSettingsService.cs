@@ -15,15 +15,19 @@ namespace DocViewer.Services.Service
         }
 
         // READ
-        public UserSettings GetUserPaths()
+        public UserPaths GetUserPaths()
         {
-            throw new NotImplementedException();
+            var settings = _dbReader.ReadAllUserSettingsFromDatabase();
+            var paths = settings.UserPaths;
+            return paths;
         }
 
         // READ
-        public UserSettings GetWindowPosition()
+        public WindowPosition GetWindowPosition()
         {
-            throw new NotImplementedException();
+            var settings = _dbReader.ReadAllUserSettingsFromDatabase();
+            var position = settings.WindowPossition;
+            return position;
         }
 
         // UPDATE
@@ -33,15 +37,19 @@ namespace DocViewer.Services.Service
         }
 
         // UPDATE
-        public void UpdateUserPaths(UserSettings pathSettings)
+        public void UpdateUserPaths(UserPaths pathSettings)
         {
-            throw new NotImplementedException();
+            var settings = _dbReader.ReadAllUserSettingsFromDatabase();
+            settings.UserPaths = pathSettings;
+            _dbReader.SaveAllUserSettingsToDatabase(settings);
         }
 
         // UPDATE
-        public void UpdateWindowPosition(UserSettings positionSettings)
+        public void UpdateWindowPosition(WindowPosition positionSettings)
         {
-            throw new NotImplementedException();
+            var settings = _dbReader.ReadAllUserSettingsFromDatabase();
+            settings.WindowPossition = positionSettings;
+            _dbReader.SaveAllUserSettingsToDatabase(settings);
         }
     }
 }
