@@ -12,7 +12,7 @@ namespace DocViewer.Services.Repository
         /// Read user settings to UserSettings class object
         /// </summary>
         /// <returns>UserSettings</returns>
-        public UserSettings ReadUserSettingsFromDatabase()
+        public UserSettings ReadAllUserSettingsFromDatabase()
         {
             UserSettings settings = new UserSettings();
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserSettings));
@@ -38,7 +38,7 @@ namespace DocViewer.Services.Repository
         /// </summary>
         /// <param name="settings"></param>
         /// <returns>bool</returns>
-        public bool SaveUserSettingsToDatabase(UserSettings settings)
+        public bool SaveAllUserSettingsToDatabase(UserSettings settings)
         {
             try
             {
