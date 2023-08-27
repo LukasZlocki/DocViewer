@@ -24,7 +24,7 @@ namespace DocViewer.ViewModels
         {
             SaveSettingsCommand = new RelayCommand(SaveSetttings);
             // MatrycaPathTxtCommand = new RelayCommand(SaveSetttings);
-            userPaths.MatrixPath = "qweqweqwe";
+            userPaths = userSettingsService.GetUserPaths();
         }
 
 
