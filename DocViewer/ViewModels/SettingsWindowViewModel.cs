@@ -11,7 +11,7 @@ namespace DocViewer.ViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private UserSettingsService userSettingsService;
+        private UserSettingsService userSettingsService = new UserSettingsService();
 
         // settings of user paths for documents and matrix file
         UserPaths userPaths = new UserPaths();
