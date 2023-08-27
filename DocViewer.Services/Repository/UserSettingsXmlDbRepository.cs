@@ -1,5 +1,6 @@
 ﻿using DocViewer.Models.Models;
 using System.Xml.Serialization;
+using System.Windows;
 
 namespace DocViewer.Services.Repository
 {
@@ -18,8 +19,10 @@ namespace DocViewer.Services.Repository
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserSettings));
             try
             {
-                TextReader tr = new StreamReader(DB_SETTINGS_FILE_NAME);
-                settings = (UserSettings)xmlSerializer.Deserialize(tr);
+                using (TextReader tr = new StreamReader(DB_SETTINGS_FILE_NAME))
+                {
+                    settings = (UserSettings)xmlSerializer.Deserialize(tr);
+                }
             }
             catch (Exception ex)
             {
@@ -43,14 +46,15 @@ namespace DocViewer.Services.Repository
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserSettings));
-                TextWriter tw = new StreamWriter(DB_SETTINGS_FILE_NAME);
-                xmlSerializer.Serialize(tw, settings);
-                tw.Close();
+                using (TextWriter tw = new StreamWriter(DB_SETTINGS_FILE_NAME))
+                {
+                    xmlSerializer.Serialize(tw, settings);
+                }
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
+                 Console.WriteLine("Error: " + ex);
                 return false;
             }
         }
