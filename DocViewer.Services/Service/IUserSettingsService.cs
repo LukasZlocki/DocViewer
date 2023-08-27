@@ -4,7 +4,14 @@ namespace DocViewer.Services.Service
 {
     public interface IUserSettingsService
     {
-        public UserSettings GetUserSettings();
-        public void SaveUserSettings(UserSettings settings);
+        // GET
+        public UserSettings GetAllUserSettings();
+        public UserPaths GetUserPaths();
+        public WindowPosition GetWindowPosition();
+
+        // UPDATE
+        public void UpdateUserPaths(UserPaths pathSettings);
+        public void UpdateWindowPosition(WindowPosition positionSettings);
+        public void SaveAllUserSettings(UserSettings settings);
     }
 }

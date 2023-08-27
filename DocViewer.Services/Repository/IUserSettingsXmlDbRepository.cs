@@ -4,7 +4,7 @@ namespace DocViewer.Services.Repository
 {
     public interface IUserSettingsXmlDbRepository
     {
-        public UserSettings ReadUserSettingsFromDatabase();
-        public bool SaveUserSettingsToDatabase(UserSettings settings);
+        public UserSettings ReadAllUserSettingsFromDatabase();
+        public bool SaveAllUserSettingsToDatabase(UserSettings settings);
     }
 }

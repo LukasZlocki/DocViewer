@@ -1,5 +1,6 @@
 ﻿using DocViewer.Models.Models;
 using System.Xml.Serialization;
+using System.Windows;
 
 namespace DocViewer.Services.Repository
 {
@@ -12,14 +13,16 @@ namespace DocViewer.Services.Repository
         /// Read user settings to UserSettings class object
         /// </summary>
         /// <returns>UserSettings</returns>
-        public UserSettings ReadUserSettingsFromDatabase()
+        public UserSettings ReadAllUserSettingsFromDatabase()
         {
             UserSettings settings = new UserSettings();
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserSettings));
             try
             {
-                TextReader tr = new StreamReader(DB_SETTINGS_FILE_NAME);
-                settings = (UserSettings)xmlSerializer.Deserialize(tr);
+                using (TextReader tr = new StreamReader(DB_SETTINGS_FILE_NAME))
+                {
+                    settings = (UserSettings)xmlSerializer.Deserialize(tr);
+                }
             }
             catch (Exception ex)
             {
@@ -38,19 +41,20 @@ namespace DocViewer.Services.Repository
         /// </summary>
         /// <param name="settings"></param>
         /// <returns>bool</returns>
-        public bool SaveUserSettingsToDatabase(UserSettings settings)
+        public bool SaveAllUserSettingsToDatabase(UserSettings settings)
         {
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserSettings));
-                TextWriter tw = new StreamWriter(DB_SETTINGS_FILE_NAME);
-                xmlSerializer.Serialize(tw, settings);
-                tw.Close();
+                using (TextWriter tw = new StreamWriter(DB_SETTINGS_FILE_NAME))
+                {
+                    xmlSerializer.Serialize(tw, settings);
+                }
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
+                 Console.WriteLine("Error: " + ex);
                 return false;
             }
         }
