@@ -13,23 +13,16 @@
         <Image x:Key="UA" Source="pack://application:,,,/Pics/Ukraine_Flag.png"  Height="55" Width="80"/>
     </Window.Resources>
 
-    <Grid x:Name="MainGrid" MouseDown="Grid_MouseDown">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="0.85*"/>
             <RowDefinition Height="100"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="0*"/>
-            </Grid.ColumnDefinitions>
-       
-        <!-- 
-            Area for jpg document.
-        <!-->
-        <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="white">
-            <Image x:Name="ImageShow" Source="{Binding ImgSource}" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
-        </StackPanel>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
         
         <!-- 
             Menu for App settings. Dissapear on firs document show  
@@ -39,6 +32,13 @@
                 <MenuItem  Header="Ustawienia programu" Command="{Binding SettingsWindowRunCommand}" />
             </MenuItem>
         </Menu>
+
+        <!-- 
+            Area for jpg document.
+        <!-->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Background="white">
+            <Image x:Name="ImageShow" Source="{Binding ImgSource}" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+        </StackPanel>
         
         <!-- 
             buttons and interaction with user.
