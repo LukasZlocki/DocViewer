@@ -46,7 +46,7 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFEE1212" Offset="0.717"/>
+                    <GradientStop Color="#1e6372" Offset="0.717"/>
                     <GradientStop Color="White"/>
                 </LinearGradientBrush>
             </StackPanel.Background>
