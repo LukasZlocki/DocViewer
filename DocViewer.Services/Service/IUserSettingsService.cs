@@ -7,6 +7,7 @@ namespace DocViewer.Services.Service
         // GET
         public UserSettings GetAllUserSettings();
         public UserPaths GetUserPaths();
+        public string GetDocumentsPath();
         public WindowPosition GetWindowPosition();
 
         // UPDATE

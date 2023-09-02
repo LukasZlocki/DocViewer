@@ -14,6 +14,13 @@ namespace DocViewer.Services.Service
             return settings;
         }
 
+        public string GetDocumentsPath()
+        {
+            var settings = _dbReader.ReadAllUserSettingsFromDatabase();
+            string documentsPath = settings.UserPaths.DocumentsPath;
+            return documentsPath;
+        }
+
         // READ
         public UserPaths GetUserPaths()
         {
