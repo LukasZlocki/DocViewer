@@ -11,7 +11,10 @@ namespace DocViewer.ViewModels
 
     class MainWindowViewModel : INotifyPropertyChanged
     {
+        // Services
         private DocumentService _documentService = new DocumentService();
+        private UserSettingsService _pathService = new UserSettingsService();
+
         public event PropertyChangedEventHandler? PropertyChanged;
         public Documents DocumentsBase;
 
@@ -202,7 +205,8 @@ namespace DocViewer.ViewModels
         private void RefreshDocumentOnScreen(int page, Documents documents, string language)
         {
             // ToDo : Include it to UsetSettings class - Path settings need to be covered by user setup class
-            string documentPath = "C:\\0 VirtualServer\\Documents\\";
+            //string documentPath = "C:\\0 VirtualServer\\Documents\\";
+            string documentPath = _pathService.GetDocumentsPath();
             string documentExtension = ".jpg";
             string documentName = documents.DocumentsList[page].DocumentName;
             
