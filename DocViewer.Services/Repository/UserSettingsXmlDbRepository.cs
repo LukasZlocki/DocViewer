@@ -27,10 +27,16 @@ namespace DocViewer.Services.Repository
             catch (Exception ex)
             {
                 Console.WriteLine("No data base found. Creating empty file with database. Error: " + ex);
+                settings.UserPaths.MatrixPath = "Paste matrix path here...";
+                settings.UserPaths.DocumentsPath = "Paste documents path here...";
+                return settings;
+
             }
             if (settings == null)
             {
-                settings = new UserSettings();
+                settings.UserPaths.MatrixPath = "Paste matrix path here...";
+                settings.UserPaths.DocumentsPath = "Paste documents path here...";
+                return settings;
             }
             return settings;
         }

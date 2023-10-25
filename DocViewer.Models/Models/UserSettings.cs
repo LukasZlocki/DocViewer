@@ -4,5 +4,11 @@
     {
         public UserPaths? UserPaths { get; set; }
         public WindowPosition? WindowPossition { get; set; }
+
+        public UserSettings()
+        {
+            UserPaths = new();
+            WindowPossition = new();
+        }
     }
 }
