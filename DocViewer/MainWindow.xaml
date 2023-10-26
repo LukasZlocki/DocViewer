@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocViewer.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="White">
+        Title="MainWindow" Height="450" Width="800" Background="White"
+        MouseDown="Grid_MouseDown">
 
     <Window.Resources>
         <local:MainWindowViewModel x:Key="ABC" />
@@ -30,6 +31,10 @@
         <Menu Background="White">
             <MenuItem Header="Ustawienia">
                 <MenuItem  Header="Ustawienia programu" Command="{Binding SettingsWindowRunCommand}" />
+                <MenuItem  Header="Zapisz pozycje" Command="{Binding PositionWindowCommand}" />
+            </MenuItem>
+            <MenuItem Header="Pozycja okna">
+                <MenuItem  Header="Zapisz pozycje okna" Command="{Binding PositionWindowFreezeCommand}" />
             </MenuItem>
         </Menu>
 
