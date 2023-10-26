@@ -18,6 +18,9 @@ namespace DocViewer.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
         public Documents DocumentsBase;
 
+        // Static Values
+        private static string NO_DOCUMENTS = "BrakDokumentu";
+
         private int Page { get; set; } = 0;
         private int LimitPages { get; set; } = 0;
 
@@ -178,11 +181,18 @@ namespace DocViewer.ViewModels
         {
             DocumentsBase = new Documents();
             DocumentsBase = _documentService.GetDocumentsSetForProductId(productId);
-            SetupPageLimits(DocumentsBase, this.Page, this.LimitPages);
-            RefreshCounter(this.Page, this.LimitPages);
-            // ToDo: BUG ! No strings with file name in documentsList ! 
-            //ShowThisDocumentOnScreen(Documents.DocumentsList[Page].DocumentName);
-            RefreshDocumentOnScreen(this.Page, this.DocumentsBase, this.Language);
+            if(DocumentsBase.DocumentsList.Count == 0) // no docs found
+            {
+                ShowAlertNoDocumentsFound(this.Language);
+            }
+            else
+            {
+                SetupPageLimits(DocumentsBase, this.Page, this.LimitPages);
+                RefreshCounter(this.Page, this.LimitPages);
+                // ToDo: BUG ! No strings with file name in documentsList ! 
+                //ShowThisDocumentOnScreen(Documents.DocumentsList[Page].DocumentName);
+                RefreshDocumentOnScreen(this.Page, this.DocumentsBase, this.Language);
+            }
         }
 
         // Setting up page counters and page liniters basis on quantity of loaded documents
@@ -238,6 +248,15 @@ namespace DocViewer.ViewModels
 
             }
             */
+        }
+
+        private void ShowAlertNoDocumentsFound(string language)
+        {
+            Document noDoc = new();
+            noDoc.DocumentName = NO_DOCUMENTS; // name of document showing no dosc found
+            Documents noDocuments = new();
+            noDocuments.DocumentsList.Add(noDoc); // no docs so name of document showing no docs is passed
+            RefreshDocumentOnScreen(0, noDocuments, language);
         }
 
         private void SettingsWindowRun()
