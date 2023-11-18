@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DocViewer.ViewModels"
+        xmlns:local="clr-namespace:DocViewer.ViewModels" 
+        xmlns:settings="clr-namespace:DocViewer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="White"
-        MouseDown="Grid_MouseDown">
+        Top="{Binding WindowPosY, Mode=TwoWay }" 
+        Left="{Binding WindowPosX, Mode=TwoWay}">
 
     <Window.Resources>
         <local:MainWindowViewModel x:Key="ABC" />
