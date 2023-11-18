@@ -33,7 +33,7 @@ namespace DocViewer.Services.Service
         public WindowPosition GetWindowPosition()
         {
             var settings = _dbReader.ReadAllUserSettingsFromDatabase();
-            var position = settings.WindowPossition;
+            var position = settings.WindowPosition;
             return position;
         }
 
@@ -55,7 +55,7 @@ namespace DocViewer.Services.Service
         public void UpdateWindowPosition(WindowPosition positionSettings)
         {
             var settings = _dbReader.ReadAllUserSettingsFromDatabase();
-            settings.WindowPossition = positionSettings;
+            settings.WindowPosition = positionSettings;
             _dbReader.SaveAllUserSettingsToDatabase(settings);
         }
     }
