@@ -13,7 +13,7 @@ namespace DocViewer.ViewModels
     {
         // Services
         private DocumentService _documentService = new DocumentService();
-        private UserSettingsService _pathService = new UserSettingsService();
+        private UserSettingsService _UserSettingsService = new UserSettingsService();
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public Documents DocumentsBase;
@@ -294,8 +294,6 @@ namespace DocViewer.ViewModels
         // Save window position to file.
         private void PositionWindowFreeze()
         {
-            double x;
-            double y;
 
             x = _windowPosX;
             y = _windowPosY;
