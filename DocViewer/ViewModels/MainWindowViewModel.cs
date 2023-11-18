@@ -30,12 +30,17 @@ namespace DocViewer.ViewModels
         private string _txtBox;
         private Image _imgLanguage;
 
+        // Position of main window.
+        private double _windowPosY;
+        private double _windowPosX;
+
         public ICommand MoveDocumentsLeftCommand { get; set; }
         public ICommand MoveDocumentsRightCommand { get; set; }
         public ICommand StartTxtCommand { get; set; }
         public ICommand LanguageChangeCommand { get; set; }
 
         public ICommand SettingsWindowRunCommand { get; set; }
+        public ICommand PositionWindowFreezeCommand { get; set; }
 
 
         private string _mainCounter;
@@ -119,6 +124,26 @@ namespace DocViewer.ViewModels
             }
         }
 
+        public double WindowPosX
+        {
+            get => _windowPosX;
+            set
+            {
+                _windowPosX = value;
+                OnPropertyChanged(nameof(WindowPosX));
+            }
+        }
+
+        public double WindowPosY
+        {
+            get => _windowPosY;
+            set
+            {
+                _windowPosY = value;
+                OnPropertyChanged(nameof(WindowPosY));
+            }
+        }
+
         // constructor
         public MainWindowViewModel()
         {
@@ -127,6 +152,7 @@ namespace DocViewer.ViewModels
             LanguageChangeCommand = new RelayCommand(LanguageChange);
             StartTxtCommand = new RelayCommand(txtLoading);
             SettingsWindowRunCommand = new RelayCommand(SettingsWindowRun);
+            PositionWindowFreezeCommand = new RelayCommand(PositionWindowFreeze);
             RefreshCounter(this.Page, this.LimitPages);
         }
 
@@ -263,6 +289,17 @@ namespace DocViewer.ViewModels
         {
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.Show();
+        }
+
+        // Save window position to file.
+        private void PositionWindowFreeze()
+        {
+            double x;
+            double y;
+
+            x = _windowPosX;
+            y = _windowPosY;
+            // ToDo : Code saving window possition here.
         }
     }
 }

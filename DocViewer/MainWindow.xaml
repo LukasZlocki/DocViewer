@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DocViewer.ViewModels"
+        xmlns:local="clr-namespace:DocViewer.ViewModels" 
+        xmlns:settings="clr-namespace:DocViewer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="White">
+        Title="MainWindow" Height="450" Width="800" Background="White"
+        Top="{Binding WindowPosY, Mode=TwoWay }" 
+        Left="{Binding WindowPosX, Mode=TwoWay}">
 
     <Window.Resources>
         <local:MainWindowViewModel x:Key="ABC" />
@@ -30,6 +33,10 @@
         <Menu Background="White">
             <MenuItem Header="Ustawienia">
                 <MenuItem  Header="Ustawienia programu" Command="{Binding SettingsWindowRunCommand}" />
+                <MenuItem  Header="Zapisz pozycje" Command="{Binding PositionWindowCommand}" />
+            </MenuItem>
+            <MenuItem Header="Pozycja okna">
+                <MenuItem  Header="Zapisz pozycje okna" Command="{Binding PositionWindowFreezeCommand}" />
             </MenuItem>
         </Menu>
 
