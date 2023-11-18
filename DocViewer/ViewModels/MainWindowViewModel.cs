@@ -31,8 +31,7 @@ namespace DocViewer.ViewModels
         private Image _imgLanguage;
 
         // Position of main window.
-        private double _windowPosY;
-        private double _windowPosX;
+        WindowPosition windowPosition = new();
 
         public ICommand MoveDocumentsLeftCommand { get; set; }
         public ICommand MoveDocumentsRightCommand { get; set; }
@@ -126,20 +125,20 @@ namespace DocViewer.ViewModels
 
         public double WindowPosX
         {
-            get => _windowPosX;
+            get => windowPosition.Xpos;
             set
             {
-                _windowPosX = value;
+                windowPosition.Xpos = value;
                 OnPropertyChanged(nameof(WindowPosX));
             }
         }
 
         public double WindowPosY
         {
-            get => _windowPosY;
+            get => windowPosition.Ypos;
             set
             {
-                _windowPosY = value;
+                windowPosition.Ypos = value;
                 OnPropertyChanged(nameof(WindowPosY));
             }
         }
@@ -147,12 +146,18 @@ namespace DocViewer.ViewModels
         // constructor
         public MainWindowViewModel()
         {
+            // Activate bindings
             MoveDocumentsLeftCommand = new RelayCommand(MoveDocumentsLeft);
             MoveDocumentsRightCommand = new RelayCommand(MoveDocumentsRight);
             LanguageChangeCommand = new RelayCommand(LanguageChange);
             StartTxtCommand = new RelayCommand(txtLoading);
             SettingsWindowRunCommand = new RelayCommand(SettingsWindowRun);
             PositionWindowFreezeCommand = new RelayCommand(PositionWindowFreeze);
+
+            // Loading window position.
+            windowPosition =  _UserSettingsService.GetWindowPosition();
+
+            // Refreshing counter on UI
             RefreshCounter(this.Page, this.LimitPages);
         }
 
@@ -294,9 +299,6 @@ namespace DocViewer.ViewModels
         // Save window position to file.
         private void PositionWindowFreeze()
         {
-            WindowPosition windowPosition = new();
-            windowPosition.Xpos = _windowPosX;
-            windowPosition.Ypos = _windowPosY;
             _UserSettingsService.UpdateWindowPosition(windowPosition);
         }
     }
