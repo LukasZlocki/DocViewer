@@ -146,6 +146,7 @@ namespace DocViewer.ViewModels
         // constructor
         public MainWindowViewModel()
         {
+            // Activate bindings
             MoveDocumentsLeftCommand = new RelayCommand(MoveDocumentsLeft);
             MoveDocumentsRightCommand = new RelayCommand(MoveDocumentsRight);
             LanguageChangeCommand = new RelayCommand(LanguageChange);
@@ -154,8 +155,9 @@ namespace DocViewer.ViewModels
             PositionWindowFreezeCommand = new RelayCommand(PositionWindowFreeze);
 
             // Loading window position.
+            windowPosition =  _UserSettingsService.GetWindowPosition();
 
-
+            // Refreshing counter on UI
             RefreshCounter(this.Page, this.LimitPages);
         }
 
