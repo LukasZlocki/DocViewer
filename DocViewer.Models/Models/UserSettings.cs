@@ -10,5 +10,12 @@
             UserPaths = new();
             WindowPosition = new();
         }
+
+        public UserSettings(UserPaths userPaths, WindowPosition windowPosition)
+        {
+            UserPaths = userPaths;
+            WindowPosition = windowPosition;
+        }
+
     }
 }
