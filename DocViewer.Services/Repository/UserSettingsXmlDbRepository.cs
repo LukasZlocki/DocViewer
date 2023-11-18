@@ -1,6 +1,5 @@
 ﻿using DocViewer.Models.Models;
 using System.Xml.Serialization;
-using System.Windows;
 
 namespace DocViewer.Services.Repository
 {
@@ -27,15 +26,27 @@ namespace DocViewer.Services.Repository
             catch (Exception ex)
             {
                 Console.WriteLine("No data base found. Creating empty file with database. Error: " + ex);
-                settings.UserPaths.MatrixPath = "Paste matrix path here...";
-                settings.UserPaths.DocumentsPath = "Paste documents path here...";
-                return settings;
+                UserPaths userPaths = new();
+                userPaths.MatrixPath = "Paste matrix path here...";
+                userPaths.DocumentsPath = "Paste documents path here...";
+                WindowPosition winPosition = new();
+                winPosition.Xpos = 0.0;
+                winPosition.Ypos = 0.0;
 
+                settings = new(userPaths, winPosition);
+                return settings;
             }
             if (settings == null)
             {
-                settings.UserPaths.MatrixPath = "Paste matrix path here...";
-                settings.UserPaths.DocumentsPath = "Paste documents path here...";
+                Console.WriteLine("No data in database. Creating default data");
+                UserPaths userPaths = new();
+                userPaths.MatrixPath = "Paste matrix path here...";
+                userPaths.DocumentsPath = "Paste documents path here...";
+                WindowPosition winPosition = new();
+                winPosition.Xpos = 0.0;
+                winPosition.Ypos = 0.0;
+
+                settings = new(userPaths, winPosition);
                 return settings;
             }
             return settings;

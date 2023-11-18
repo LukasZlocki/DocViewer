@@ -3,12 +3,19 @@
     public class UserSettings
     {
         public UserPaths? UserPaths { get; set; }
-        public WindowPosition? WindowPossition { get; set; }
+        public WindowPosition? WindowPosition { get; set; }
 
         public UserSettings()
         {
             UserPaths = new();
-            WindowPossition = new();
+            WindowPosition = new();
         }
+
+        public UserSettings(UserPaths userPaths, WindowPosition windowPosition)
+        {
+            UserPaths = userPaths;
+            WindowPosition = windowPosition;
+        }
+
     }
 }
