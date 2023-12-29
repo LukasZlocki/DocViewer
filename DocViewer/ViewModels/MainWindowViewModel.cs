@@ -125,21 +125,27 @@ namespace DocViewer.ViewModels
 
         public double WindowPosX
         {
-            get => windowPosition.Xpos;
+            get { return windowPosition.Xpos; }
             set
             {
-                windowPosition.Xpos = value;
-                OnPropertyChanged(nameof(WindowPosX));
+                if (value != windowPosition.Xpos)
+                {
+                    windowPosition.Xpos = value;
+                    OnPropertyChanged(nameof(WindowPosX));
+                }
             }
         }
 
         public double WindowPosY
         {
-            get => windowPosition.Ypos;
+            get { return windowPosition.Ypos; }
             set
             {
-                windowPosition.Ypos = value;
-                OnPropertyChanged(nameof(WindowPosY));
+                if (value != windowPosition.Ypos)
+                {
+                    windowPosition.Ypos = value;
+                    OnPropertyChanged(nameof(WindowPosY));
+                }
             }
         }
 
@@ -148,7 +154,10 @@ namespace DocViewer.ViewModels
             get => windowPosition.HeightWin;
             set
             {
-                windowPosition.HeightWin = value;
+                if (value < 100) {
+                    value = 500; };
+               // windowPosition.HeightWin = value;
+
                 OnPropertyChanged(nameof(WindowHeight));
             }
         }
@@ -158,6 +167,10 @@ namespace DocViewer.ViewModels
             get => windowPosition.WidthWin;
             set
             {
+                if (value < 100)
+                {
+                    value = 450;
+                };
                 windowPosition.WidthWin = value;
                 OnPropertyChanged(nameof(WindowWidth));
             }
@@ -174,6 +187,8 @@ namespace DocViewer.ViewModels
             SettingsWindowRunCommand = new RelayCommand(SettingsWindowRun);
             PositionWindowFreezeCommand = new RelayCommand(PositionWindowFreeze);
 
+            windowPosition.HeightWin = 500;
+            windowPosition.WidthWin = 450;
             // Loading window position.
             windowPosition =  _UserSettingsService.GetWindowPosition();
 
