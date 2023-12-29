@@ -7,8 +7,8 @@
         xmlns:settings="clr-namespace:DocViewer"
         mc:Ignorable="d" Background="White"
         Title="MainWindow" 
-        Height="{ Biding WindowHeight, Model=TwoWay }" 
-        Width="{ Biding WindowWidth, Model=TwoWay }" 
+        Height="{ Binding WindowHeight, Mode=TwoWay }" 
+        Width="{ Binding WindowWidth, Mode=TwoWay }" 
         Top="{Binding WindowPosY, Mode=TwoWay }" 
         Left="{Binding WindowPosX, Mode=TwoWay}">
 
