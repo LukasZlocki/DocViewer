@@ -151,28 +151,27 @@ namespace DocViewer.ViewModels
 
         public double WindowHeight
         {
-            get => windowPosition.HeightWin;
+            get { return windowPosition.HeightWin; }
             set
             {
-                if (value < 100) {
-                    value = 500; };
-               // windowPosition.HeightWin = value;
-
-                OnPropertyChanged(nameof(WindowHeight));
+                if (value != windowPosition.HeightWin)
+                {
+                    windowPosition.HeightWin = value;
+                    OnPropertyChanged(nameof(WindowHeight));
+                }
             }
         }
 
         public double WindowWidth
         {
-            get => windowPosition.WidthWin;
+            get { return windowPosition.WidthWin; }
             set
             {
-                if (value < 100)
+                if (value != windowPosition.WidthWin)
                 {
-                    value = 450;
-                };
-                windowPosition.WidthWin = value;
-                OnPropertyChanged(nameof(WindowWidth));
+                    windowPosition.WidthWin = value;
+                    OnPropertyChanged(nameof(WindowWidth));
+                }
             }
         }
 
@@ -187,10 +186,18 @@ namespace DocViewer.ViewModels
             SettingsWindowRunCommand = new RelayCommand(SettingsWindowRun);
             PositionWindowFreezeCommand = new RelayCommand(PositionWindowFreeze);
 
-            windowPosition.HeightWin = 500;
-            windowPosition.WidthWin = 450;
+
             // Loading window position.
             windowPosition =  _UserSettingsService.GetWindowPosition();
+            // if first run set up window width and height to default
+            if (windowPosition.WidthWin == 0)
+            {
+                windowPosition.WidthWin = 500.00;
+            }
+            if (windowPosition.HeightWin == 0)
+            {
+                windowPosition.HeightWin = 600.00;
+            }
 
             // Refreshing counter on UI
             RefreshCounter(this.Page, this.LimitPages);
