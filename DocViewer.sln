@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocViewer", "DocViewer\DocViewer.csproj", "{893FA9AF-1D84-4525-A2B3-A0A89D560C00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocViewer", "DocViewer\DocViewer.csproj", "{893FA9AF-1D84-4525-A2B3-A0A89D560C00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocViewer.Services", "DocViewer.Services\DocViewer.Services.csproj", "{F3C905AE-D300-4D11-B936-CAE9B7002704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocViewer.Services", "DocViewer.Services\DocViewer.Services.csproj", "{F3C905AE-D300-4D11-B936-CAE9B7002704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocViewer.Models", "DocViewer.Models\DocViewer.Models.csproj", "{03374296-4DAB-45E2-965F-3B9244497EC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocViewer.Models", "DocViewer.Models\DocViewer.Models.csproj", "{03374296-4DAB-45E2-965F-3B9244497EC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

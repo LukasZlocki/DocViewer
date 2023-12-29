@@ -125,21 +125,53 @@ namespace DocViewer.ViewModels
 
         public double WindowPosX
         {
-            get => windowPosition.Xpos;
+            get { return windowPosition.Xpos; }
             set
             {
-                windowPosition.Xpos = value;
-                OnPropertyChanged(nameof(WindowPosX));
+                if (value != windowPosition.Xpos)
+                {
+                    windowPosition.Xpos = value;
+                    OnPropertyChanged(nameof(WindowPosX));
+                }
             }
         }
 
         public double WindowPosY
         {
-            get => windowPosition.Ypos;
+            get { return windowPosition.Ypos; }
             set
             {
-                windowPosition.Ypos = value;
-                OnPropertyChanged(nameof(WindowPosY));
+                if (value != windowPosition.Ypos)
+                {
+                    windowPosition.Ypos = value;
+                    OnPropertyChanged(nameof(WindowPosY));
+                }
+            }
+        }
+
+        public double WindowHeight
+        {
+            get { return windowPosition.HeightWin; }
+            set
+            {
+                if (value != windowPosition.HeightWin)
+                {
+                    windowPosition.HeightWin = value;
+                    OnPropertyChanged(nameof(WindowHeight));
+                }
+            }
+        }
+
+        public double WindowWidth
+        {
+            get { return windowPosition.WidthWin; }
+            set
+            {
+                if (value != windowPosition.WidthWin)
+                {
+                    windowPosition.WidthWin = value;
+                    OnPropertyChanged(nameof(WindowWidth));
+                }
             }
         }
 
@@ -154,8 +186,18 @@ namespace DocViewer.ViewModels
             SettingsWindowRunCommand = new RelayCommand(SettingsWindowRun);
             PositionWindowFreezeCommand = new RelayCommand(PositionWindowFreeze);
 
+
             // Loading window position.
             windowPosition =  _UserSettingsService.GetWindowPosition();
+            // if first run set up window width and height to default
+            if (windowPosition.WidthWin == 0)
+            {
+                windowPosition.WidthWin = 500.00;
+            }
+            if (windowPosition.HeightWin == 0)
+            {
+                windowPosition.HeightWin = 600.00;
+            }
 
             // Refreshing counter on UI
             RefreshCounter(this.Page, this.LimitPages);
@@ -263,22 +305,6 @@ namespace DocViewer.ViewModels
         {    
             ImgSource = fullPath;
             OnPropertyChanged(nameof(ImgSource));
-
-            /*
-            try
-            {
-                //ImageSource imagesource = new BitmapImage(new Uri(fullPath));
-                //ImageShow.Source = imagesource;
-            }
-            catch
-            {
-                if (documentName == "")
-                {
-                   // ShowFailDocument("FALSE_NO_FILE_WITH_DOCUMENT", userSettings);
-                }
-
-            }
-            */
         }
 
         private void ShowAlertNoDocumentsFound(string language)
