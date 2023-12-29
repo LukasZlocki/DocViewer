@@ -143,6 +143,26 @@ namespace DocViewer.ViewModels
             }
         }
 
+        public double WindowHeight
+        {
+            get => windowPosition.HeightWin;
+            set
+            {
+                windowPosition.HeightWin = value;
+                OnPropertyChanged(nameof(WindowHeight));
+            }
+        }
+
+        public double WindowWidth
+        {
+            get => windowPosition.WidthWin;
+            set
+            {
+                windowPosition.WidthWin = value;
+                OnPropertyChanged(nameof(WindowWidth));
+            }
+        }
+
         // constructor
         public MainWindowViewModel()
         {
