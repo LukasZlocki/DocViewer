@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocViewer.ViewModels" 
         xmlns:settings="clr-namespace:DocViewer"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="White"
+        mc:Ignorable="d" Background="White"
+        Title="MainWindow" 
+        Height="{ Biding WindowHeight, Model=TwoWay }" 
+        Width="{ Biding WindowWidth, Model=TwoWay }" 
         Top="{Binding WindowPosY, Mode=TwoWay }" 
         Left="{Binding WindowPosX, Mode=TwoWay}">
 
