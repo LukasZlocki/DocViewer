@@ -305,22 +305,6 @@ namespace DocViewer.ViewModels
         {    
             ImgSource = fullPath;
             OnPropertyChanged(nameof(ImgSource));
-
-            /*
-            try
-            {
-                //ImageSource imagesource = new BitmapImage(new Uri(fullPath));
-                //ImageShow.Source = imagesource;
-            }
-            catch
-            {
-                if (documentName == "")
-                {
-                   // ShowFailDocument("FALSE_NO_FILE_WITH_DOCUMENT", userSettings);
-                }
-
-            }
-            */
         }
 
         private void ShowAlertNoDocumentsFound(string language)
