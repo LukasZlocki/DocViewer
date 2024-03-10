@@ -6,46 +6,61 @@ App to visualize documentation for operators on their work stations.
 ## General Information
 
 Background:
-The idea appeared during one of the project lead by me.
+The idea appeared during one of the project led by me.
 Because of lots of products produced on various work stations, there were lots of paper documentation around.
 Finding needed documentation costs huge amount of time.
 
 The problem:
-That huge amount of paper documentation caused that operators find difficult to find needed information in most cases loosing lots of time to do so.
+That huge amount of paper documentation caused that operators found it difficult to collect needed information. In most cases loosing lots of time to do so.
 I noticed that in order to avoid loosing time, during checking documention, workers started to work not according to instructions given in documentation = Quality concerns.
 
 The solution:  
 Creation of desktop application for visualization of documentation that are only needed during producing specific product.
-No papers will be needed and information given to operator will be focused only for what is needed in present process stage.
-Additionaly documents will be presented in two languages, depends what language is needed for operator. 
-App is easily installable and configurable on any computer on work station.
-
-
-## Branches
-
-* main branch consist newest release.
-* release_{number}_{subnumber} branch covers all releases.
-* other branches according to its description
+No papers will be needed. Information given to operators will be focused only on what is needed in current process stage.
+Documents will be presented in two languages.
+App is easy to install and configure.
 
 
 ## Technologies Used
 
-* WPF
-* .NET 6.0
+* WPF .Net
+* .NET 7.0
 * C#
 * XAML
 * XML
-* SQL Server
+
+
+## Architecture / design patterns
+
+* Onion Architecture
+* Model-View-ViewModel
 
 
 ## Features
 
+* Extracting needed documentation by proiduct number.
 * Visualization of needed documentaion on work station.
 * Ability to scroll documents forward/backward.
 * Presentation of documents in different lenguages.
 * Easy configuration on new working station.
+* Saving window size and its possition for custom setup purpose.
+
+
+
+## Features for further development
+
 * Ability to work with touch screens.
-* Support app for setting up documentation for new products.
+* Work with remote databases like MSSQL, Azure, AWS and others.
+* Build in tool to implement new code numbers and related documentation.
+
+
+## Some photos
+
+* Documentation on production stand - imagine you need to pick only pages that are needed for specified product to produce.
+![](State_Before.jpg)
+
+* DocViewer App - implement product code and needed documentation will be extracted.
+![](State_After.jpg)
 
 
 ## Creator
